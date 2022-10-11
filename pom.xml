@@ -53,6 +53,7 @@
     </scm>
 
     <modules>
+        <module>resteasy-spring-basic</module>
     </modules>
     <build>
         <plugins>
