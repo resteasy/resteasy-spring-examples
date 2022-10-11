@@ -54,6 +54,7 @@
 
     <modules>
         <module>resteasy-spring-basic</module>
+        <module>resteasy-spring-customized</module>
     </modules>
     <build>
         <plugins>
