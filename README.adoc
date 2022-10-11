@@ -1,0 +1,11 @@
+= RESTEasy Spring Examples
+
+RESTEasy Spring Examples are a collection of example applications for RESTEasy with Spring.
+
+Each module can be run independently unless otherwise noted in its README.
+
+== Requirements
+
+To compile you need a minimum of Java 17 and https://maven.apache.org[Maven].
+
+== Quick Start List
