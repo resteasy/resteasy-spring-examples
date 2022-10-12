@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>dev.resteasy.tools</groupId>
+        <artifactId>resteasy-parent</artifactId>
+        <version>2.0.1.Final</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>dev.resteasy.spring.examples</groupId>
+    <artifactId>examples-resteasy-spring-undertow</artifactId>
+    <version>1.0.0.Final-SNAPSHOT</version>
+    <name>RESTEasy Spring Examples: RESTEasy Spring Undertow Maven Webapp</name>
+    <packaging>jar</packaging>
+
+    <url>https://resteasy.dev</url>
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://repository.jboss.org/licenses/apache-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/resteasy/resteasy-spring-examples.git</connection>
+        <developerConnection>scm:git:git@github.com:resteasy/resteasy-spring-examples.git</developerConnection>
+        <url>https://github.com/resteasy/resteasy-spring-examples/tree/main/</url>
+    </scm>
+
+    <properties>
+        <!-- Require Java 17 -->
+        <jdk.min.version>17</jdk.min.version>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+
+        <version.org.jboss.resteasy>6.2.1.Final</version.org.jboss.resteasy>
+        <version.org.jboss.resteasy.spring>3.0.0.Beta2</version.org.jboss.resteasy.spring>
+        <version.org.junit>5.9.1</version.org.junit>
+
+        <!-- Plugin Versions -->
+        <version.jandex.maven.plugin>1.2.3</version.jandex.maven.plugin>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-bom</artifactId>
+                <version>${version.org.jboss.resteasy}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy.spring</groupId>
+                <artifactId>resteasy-spring-bom</artifactId>
+                <version>${version.org.jboss.resteasy.spring}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${version.org.junit}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- Can be removed when RESTEASY-3241 is resolved and integrated -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy.spring</groupId>
+            <artifactId>resteasy-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxb-provider</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy.spring</groupId>
+            <artifactId>resteasy-undertow-spring</artifactId>
+            <version>${version.org.jboss.resteasy.spring}</version>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>net.revelc.code</groupId>
+                <artifactId>impsort-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <!-- Use Jandex to  -->
+            <plugin>
+                <groupId>org.jboss.jandex</groupId>
+                <artifactId>jandex-maven-plugin</artifactId>
+                <version>${version.jandex.maven.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>make-index</id>
+                        <goals>
+                            <goal>jandex</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>dev.resteasy.spring.examples.springundertow.Main</mainClass>
+                            <packageName>dev.resteasy.spring.examples.springundertow</packageName>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
+                            <resource>module-info.class</resource>
+                        </transformer>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <!-- Required for the Spring 6 Milestones -->
+        <repository>
+            <id>spring-repo</id>
+            <name>Spring Repository</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+</project>
