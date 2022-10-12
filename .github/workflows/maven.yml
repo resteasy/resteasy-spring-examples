@@ -5,8 +5,8 @@ name: Full Build and Test
 
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - 'dependabot/**'
   pull_request:
     branches:
       - '**'
