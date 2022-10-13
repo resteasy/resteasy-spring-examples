@@ -1,0 +1,64 @@
+= Spring MVC and RESTEasy Integration Example
+
+Example of using RestEasy with:
+
+* Spring
+* WildFly
+
+The module shows an example show the usage of RESTEasy Spring-MVC integration.
+
+== Building the project
+
+[source,bash]
+----
+$ mvn clean install
+
+----
+
+== Running the project and manually testing it
+
+[source,bash]
+----
+$ mvn wildfly:run
+
+----
+
+Open a browser at the following URL:
+
+____
+
+http://localhost:8080/resteasy-spring-mvc/rest/contacts
+
+____
+
+This will give a web page to enter contacts.
+
+Using the `curl` command to access this URL:
+
+[source,bash]
+----
+$ curl http://localhost:8080/resteasy-spring-mvc/rest/contacts/data
+----
+
+== Deploying The Project To WildFly
+
+This example has embedded `wildfly-maven-plugin` embedded, so it can be deployed to a managed WildFly server by running the Maven command. Run the following command to build the example, download WildFly server, start the server and finish deployment automatically:
+
+[source,bash]
+----
+$ mvn wildfly:run
+----
+
+After the embedded WildFly server is downloaded and run, access the example service with following `curl` command:
+
+[source,bash]
+----
+$ curl http://localhost:8080/resteasy-spring-mvc/rest/contacts/data
+----
+
+And it will print the output result:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><contacts/>
+----
