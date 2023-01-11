@@ -40,7 +40,7 @@
 
         <version.org.jboss.resteasy>6.2.2.Final</version.org.jboss.resteasy>
         <version.org.jboss.resteasy.spring>3.0.0.Beta3</version.org.jboss.resteasy.spring>
-        <version.org.junit>5.9.1</version.org.junit>
+        <version.org.junit>5.9.2</version.org.junit>
 
         <!-- Plugin Versions -->
         <version.jandex.maven.plugin>1.2.3</version.jandex.maven.plugin>
