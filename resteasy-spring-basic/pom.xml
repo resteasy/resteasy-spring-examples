@@ -44,8 +44,7 @@
         <version.org.junit>5.10.3</version.org.junit>
         <version.org.wildfly>27.0.0.Beta1</version.org.wildfly>
         <version.org.wildfly.arquillian>5.1.0.Beta4</version.org.wildfly.arquillian>
-        <version.org.jboss.arquillian.jakarta>10.0.0.Final</version.org.jboss.arquillian.jakarta>
-
+        <version.org.jboss.shrinkwrap.resolver>3.3.0</version.org.jboss.shrinkwrap.resolver>
         <version.wildfly-maven-plugin>5.0.0.Final</version.wildfly-maven-plugin>
 
         <!-- Test properties -->
@@ -56,6 +55,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- This is required first to override the dependencies in the Arquillian BOM -->
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>${version.org.jboss.shrinkwrap.resolver}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -125,14 +132,17 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.protocol</groupId>
-            <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-impl-base</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -184,7 +194,9 @@
                 <configuration>
                     <systemPropertyVariables>
                         <jboss.home>${jboss.home}</jboss.home>
-                        <web.inf.dir>${project.basedir}${file.separator}src${file.separator}main${file.separator}webapp${file.separator}WEB-INF</web.inf.dir>
+                        <web.inf.dir>
+                            ${project.basedir}${file.separator}src${file.separator}main${file.separator}webapp${file.separator}WEB-INF
+                        </web.inf.dir>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -268,7 +280,8 @@
                 </property>
             </activation>
             <properties>
-                <debugJvmArgs>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:${debug.port}</debugJvmArgs>
+                <debugJvmArgs>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:${debug.port}
+                </debugJvmArgs>
             </properties>
         </profile>
     </profiles>
