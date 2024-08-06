@@ -39,13 +39,14 @@
         <maven.compiler.source>17</maven.compiler.source>
 
         <version.jakarta.ee>10.0.0</version.jakarta.ee>
-        <version.org.jboss.arquillian>1.8.0.Final</version.org.jboss.arquillian>
+        <version.org.jboss.arquillian>1.9.1.Final</version.org.jboss.arquillian>
+        <version.org.jboss.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap>
         <version.org.jboss.resteasy>6.2.9.Final</version.org.jboss.resteasy>
         <version.org.jboss.resteasy.spring>3.1.3.Final</version.org.jboss.resteasy.spring>
         <version.org.junit>5.10.3</version.org.junit>
         <version.org.wildfly>27.0.0.Beta1</version.org.wildfly>
-        <version.org.wildfly.arquillian>5.0.1.Final</version.org.wildfly.arquillian>
-
+        <version.org.wildfly.arquillian>5.1.0.Beta4</version.org.wildfly.arquillian>
+        <version.org.jboss.shrinkwrap.resolver>3.3.0</version.org.jboss.shrinkwrap.resolver>
         <version.wildfly-maven-plugin>5.0.0.Final</version.wildfly-maven-plugin>
 
         <!-- Test properties -->
@@ -56,6 +57,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- This is required first to override the dependencies in the Arquillian BOM -->
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>${version.org.jboss.shrinkwrap.resolver}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
             <dependency>
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-bom</artifactId>
@@ -69,6 +78,13 @@
                 <version>${version.org.jboss.arquillian}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-bom</artifactId>
+                <version>${version.org.jboss.shrinkwrap}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -144,11 +160,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.protocol</groupId>
-            <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
