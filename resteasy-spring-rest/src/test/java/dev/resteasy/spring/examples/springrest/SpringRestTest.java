@@ -56,6 +56,7 @@ public class SpringRestTest {
                 .addClasses(MyApplication.class, SpringRestAnnotationResource.class)
                 .addAsWebInfResource(new File(System.getProperty("web.inf.dir"), "web.xml"), "web.xml")
                 .addAsLibraries(resolver.resolve("org.springframework:spring-web").withTransitivity().asFile())
+                .addAsLibraries(resolver.resolve("org.springframework:spring-context").withTransitivity().asFile())
                 .addAsLibraries(
                         resolver.resolve("org.jboss.resteasy.spring:resteasy-spring-web").withoutTransitivity().asFile());
     }
