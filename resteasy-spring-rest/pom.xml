@@ -40,9 +40,10 @@
 
         <version.org.jboss.arquillian>1.9.1.Final</version.org.jboss.arquillian>
         <version.org.jboss.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap>
+        <version.org.jboss.resteasy>6.2.11.Final</version.org.jboss.resteasy>
         <version.org.jboss.resteasy.spring>3.2.0.Final</version.org.jboss.resteasy.spring>
         <version.org.junit>5.11.3</version.org.junit>
-        <version.org.wildfly>27.0.0.Beta1</version.org.wildfly>
+        <version.org.wildfly>34.0.1.Final</version.org.wildfly>
         <version.org.wildfly.arquillian>5.1.0.Beta7</version.org.wildfly.arquillian>
         <version.org.jboss.shrinkwrap.resolver>3.3.2</version.org.jboss.shrinkwrap.resolver>
 
@@ -222,6 +223,11 @@
                                         <name>product.conf</name>
                                         <name>docs.schema</name>
                                     </excluded-packages>
+                                </feature-pack>
+                                <feature-pack>
+                                    <groupId>org.jboss.resteasy</groupId>
+                                    <artifactId>galleon-feature-pack</artifactId>
+                                    <version>${version.org.jboss.resteasy}</version>
                                 </feature-pack>
                                 <!-- Next include our own feature pack -->
                                 <feature-pack>
