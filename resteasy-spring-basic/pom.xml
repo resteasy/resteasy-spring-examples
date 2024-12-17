@@ -41,7 +41,7 @@
         <version.org.jboss.arquillian>1.9.1.Final</version.org.jboss.arquillian>
         <version.org.jboss.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap>
         <version.org.jboss.resteasy.spring>3.2.0.Final</version.org.jboss.resteasy.spring>
-        <version.org.junit>5.11.3</version.org.junit>
+        <version.org.junit>5.11.4</version.org.junit>
         <version.org.wildfly>27.0.0.Beta1</version.org.wildfly>
         <version.org.wildfly.arquillian>5.1.0.Beta7</version.org.wildfly.arquillian>
         <version.org.jboss.shrinkwrap.resolver>3.3.3</version.org.jboss.shrinkwrap.resolver>
