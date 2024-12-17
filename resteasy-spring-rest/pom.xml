@@ -47,7 +47,7 @@
         <version.org.wildfly.arquillian>5.1.0.Beta7</version.org.wildfly.arquillian>
         <version.org.jboss.shrinkwrap.resolver>3.3.3</version.org.jboss.shrinkwrap.resolver>
 
-        <version.wildfly-maven-plugin>5.0.1.Final</version.wildfly-maven-plugin>
+        <version.wildfly-maven-plugin>5.1.0.Final</version.wildfly-maven-plugin>
 
         <!-- Test properties -->
         <jboss.home>${project.build.directory}${file.separator}wildfly</jboss.home>
