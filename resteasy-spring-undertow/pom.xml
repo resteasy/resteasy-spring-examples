@@ -40,7 +40,7 @@
 
         <version.org.jboss.resteasy>6.2.12.Final</version.org.jboss.resteasy>
         <version.org.jboss.resteasy.spring>3.2.0.Final</version.org.jboss.resteasy.spring>
-        <version.org.junit>5.12.2</version.org.junit>
+        <version.org.junit>5.13.0</version.org.junit>
         <version.jakarta.servlet-api>6.0.0</version.jakarta.servlet-api>
 
         <!-- Plugin Versions -->
